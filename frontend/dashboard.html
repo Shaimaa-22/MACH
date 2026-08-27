@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>GlucoseCare - لوحة القياس</title>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <div class="brand">
+        <h1>لوحة القياس</h1>
+        <p>متابعة مباشرة لآخر قراءة واردة من جهاز القياس</p>
+      </div>
+      <div class="badge">Live Data</div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">ملخص الحالة</h2>
+      <p class="section-subtitle">
+        يتم تحديث القراءة تلقائيًا كل 5 ثوانٍ.
+      </p>
+
+      <div class="metrics">
+        <div class="metric-card">
+          <div class="metric-label">آخر قراءة</div>
+          <div id="value" class="metric-value">--</div>
+          <div id="estimatedBadge" class="estimated-badge" hidden>تقديرية — غير معايَرة طبياً</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-label">الحالة</div>
+          <div id="status" class="status-pill">--</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-label">وقت آخر تحديث</div>
+          <div id="time" class="metric-small">--</div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        في حال كانت القراءة أعلى من الحد الطبيعي، سيتم إرسال تنبيه للطبيب المختص عبر البريد الإلكتروني والواتساب.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">تاريخ القراءات</h2>
+      <canvas id="historyChart" height="90"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">التحكم بالجهاز</h2>
+      <div class="device-row">
+        <span id="deviceStatus" class="status-pill">--</span>
+        <div class="device-buttons">
+          <button id="btnOn" class="btn btn-on">تشغيل</button>
+          <button id="btnOff" class="btn btn-off">إطفاء</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    loadLatest();
+    loadHistory();
+    loadDeviceStatus();
+    setInterval(loadLatest, 5000);
+    setInterval(loadHistory, 15000);
+    setInterval(loadDeviceStatus, 5000);
+
+    document.getElementById("btnOn").addEventListener("click", () => controlDevice("ON"));
+    document.getElementById("btnOff").addEventListener("click", () => controlDevice("OFF"));
+  </script>
+</body>
+</html>

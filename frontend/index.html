@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>GlucoseCare - تسجيل المريض</title>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <div class="brand">
+        <h1>GlucoseCare</h1>
+        <p>نظام ذكي لمراقبة مستوى السكر والتنبيه الطبي الفوري</p>
+      </div>
+      <div class="badge">Smart Monitoring</div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">تسجيل المريض</h2>
+      <p class="section-subtitle">
+        أدخل بيانات المريض لبدء جلسة المراقبة وربط القراءة القادمة بالحساب الحالي.
+      </p>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="patientName">اسم المريض</label>
+          <input id="patientName" placeholder="أدخل اسم المريض" />
+        </div>
+
+        <div class="field">
+          <label for="age">العمر</label>
+          <input id="age" type="number" placeholder="أدخل العمر" />
+        </div>
+      </div>
+
+      <button onclick="register()">بدء المراقبة</button>
+
+      <div class="footer-note">
+        سيتم استخدام بيانات الطبيب والحدود الطبية الثابتة تلقائيًا من النظام.
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

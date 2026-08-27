@@ -1,0 +1,21 @@
+{
+  "name": "glucose-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.15.1",
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "mqtt": "^5.10.1",
+    "nodemailer": "latest",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
