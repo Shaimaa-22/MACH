@@ -290,11 +290,12 @@ app.post("/api/readings", async (req, res) => {
         ? `تنبيه ارتفاع سكر - ${patient.full_name}`
         : `تنبيه انخفاض سكر - ${patient.full_name}`;
 
-      await sendEmail(
-        patient.doctor_email,
-        subject,
-        msg
-      );
+      // Fire-and-forget: don't block the ESP32's response on Gmail SMTP.
+      // Sending can take several seconds and was causing the device's
+      // HTTP request to time out (-11) specifically on HIGH/LOW readings.
+      sendEmail(patient.doctor_email, subject, msg).catch((err) => {
+        console.error("sendEmail error (non-blocking):", err);
+      });
 
       const doctorPhone = patient.doctor_whatsapp.replace(/\D/g, "");
       whatsappLink = `https://wa.me/${doctorPhone}?text=${encodeURIComponent(msg)}`;
