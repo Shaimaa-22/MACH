@@ -1,5 +1,4 @@
-const API = "https://mach-backend-wsbv.onrender.com";
-
+const API = "https://mach-ifww.onrender.com";
 let historyChart = null;
 
 async function register() {
