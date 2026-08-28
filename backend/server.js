@@ -297,9 +297,12 @@ app.post("/api/readings", async (req, res) => {
       // Fire-and-forget: don't block the ESP32's response on Gmail SMTP.
       // Sending can take several seconds and was causing the device's
       // HTTP request to time out (-11) specifically on HIGH/LOW readings.
-      sendEmail(patient.doctor_email, subject, msg).catch((err) => {
-        console.error("sendEmail error (non-blocking):", err);
-      });
+      console.log(`Attempting to send alert email. doctor_email in DB = "${patient.doctor_email}"`);
+      sendEmail(patient.doctor_email, subject, msg)
+        .then(() => console.log("sendEmail succeeded"))
+        .catch((err) => {
+          console.error("sendEmail error (non-blocking):", err);
+        });
 
       const doctorPhone = patient.doctor_whatsapp.replace(/\D/g, "");
       whatsappLink = `https://wa.me/${doctorPhone}?text=${encodeURIComponent(msg)}`;
