@@ -49,7 +49,7 @@ function setupMqtt() {
 
 const SYSTEM_DOCTOR = {
   name: process.env.DOCTOR_NAME || "د. أحمد",
-  email: "shaimaadwedar03@gmail.com,ahmadradialbatal@gmail.com,waaddwedar20@gmail.com",
+  email: "shaimaadwedar03@gmail.com",
   whatsapp: process.env.DOCTOR_WHATSAPP
 };
 
@@ -75,7 +75,10 @@ const EMAIL_USER = "shaimaadwedar03@gmail.com";
 const EMAIL_PASS = "hmit nhmv xndc opxn"; // Gmail App Password (16-char, spaces are fine)
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  family: 4, // force IPv4 — Render's network can't route to Gmail's IPv6 address
   auth: {
     user: EMAIL_USER,
     pass: EMAIL_PASS
