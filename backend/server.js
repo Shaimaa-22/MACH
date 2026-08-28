@@ -49,7 +49,7 @@ function setupMqtt() {
 
 const SYSTEM_DOCTOR = {
   name: process.env.DOCTOR_NAME || "د. أحمد",
-  email: process.env.DOCTOR_EMAILS, // comma-separated list, set in .env — never commit real emails
+  email: "shaimaadwedar03@gmail.com,ahmadradialbatal@gmail.com,waaddwedar20@gmail.com",
   whatsapp: process.env.DOCTOR_WHATSAPP
 };
 
@@ -70,17 +70,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../frontend")));
 
+// Gmail SMTP credentials — hardcoded per request (not using .env for these).
+const EMAIL_USER = "shaimaadwedar03@gmail.com";
+const EMAIL_PASS = "hmit nhmv xndc opxn"; // Gmail App Password (16-char, spaces are fine)
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
+    user: EMAIL_USER,
+    pass: EMAIL_PASS
   }
 });
 
 function sendEmail(to, subject, text) {
   return transporter.sendMail({
-    from: process.env.EMAIL_USER,
+    from: EMAIL_USER,
     to,
     subject,
     text
