@@ -1,3 +1,6 @@
+const dns = require("dns");
+dns.setDefaultResultOrder("ipv4first"); // force IPv4-first DNS resolution globally (fixes Render + Gmail IPv6 ENETUNREACH)
+
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
